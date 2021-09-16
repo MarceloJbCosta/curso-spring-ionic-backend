@@ -18,7 +18,7 @@ public class ClienteService {
 	
 	
 	//operacao para buscar a categoria por codigo
-	public Cliente buscar(Integer id) {
+	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encpntrado! ID: " + id + ", Tipo " +
