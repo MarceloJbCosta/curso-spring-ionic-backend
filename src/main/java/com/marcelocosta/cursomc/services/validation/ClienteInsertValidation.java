@@ -6,12 +6,19 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.marcelocosta.cursomc.domain.Cliente;
 import com.marcelocosta.cursomc.domain.enums.TipoCliente;
 import com.marcelocosta.cursomc.dto.ClienteNewDTO;
+import com.marcelocosta.cursomc.repositories.ClienteRepository;
 import com.marcelocosta.cursomc.resources.exception.FieldMessage;
 import com.marcelocosta.cursomc.services.validation.utils.BR;
 
 public class ClienteInsertValidation implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
+	
+	@Autowired
+	private ClienteRepository repo;
 	
 	@Override
 	public void initialize(ClienteInsert ann) {
@@ -29,7 +36,10 @@ public class ClienteInsertValidation implements ConstraintValidator<ClienteInser
 			list.add(new FieldMessage("cpfOuCnpj", "CNPJ invalido"));
 		}
 		
-		// inclua os testes aqui, inserindo erros na lista
+		Cliente aux = repo.findByEmail(objDto.getEmail());
+		if(aux != null) {
+			list.add(new FieldMessage("Email", "Email já Existente"));
+		}
 		
 		
 		for (FieldMessage e : list) {
