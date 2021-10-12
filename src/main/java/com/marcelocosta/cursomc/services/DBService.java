@@ -133,7 +133,7 @@ public class DBService {
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
 		
-		Cliente cli2 = new Cliente(null, "Juliana Santos", "eujusantos82@gmail.com ", "04643260440", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		Cliente cli2 = new Cliente(null, "Juliana Santos", "eujusantos82@gmail.com", "04643260440", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli2.getTelefones().addAll(Arrays.asList("24463323", "93834493"));
 		cli2.addPerfil(Perfil.ADMIN);
 		
