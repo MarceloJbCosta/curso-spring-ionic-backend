@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.marcelocosta.cursomc.domain.Categoria;
 import com.marcelocosta.cursomc.domain.Pedido;
-import com.marcelocosta.cursomc.dto.CategoriaDTO;
 import com.marcelocosta.cursomc.services.PedidoService;
 
 
