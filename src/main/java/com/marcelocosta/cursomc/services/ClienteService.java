@@ -80,8 +80,6 @@ public class ClienteService {
 	}
 	
 	
-	
-	
 	//mudancas para buscar do banca de daods os datos que nao serao alterados
 	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
@@ -104,6 +102,23 @@ public class ClienteService {
 		return repo.findAll();
 		
 	}
+	
+	//buscar cliente por email
+	public Cliente findByEmail(String email) {
+		
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername()) ) {
+			throw new ObjectNotFoundException("Acesso negado");
+		}
+		Cliente obj = repo.findByEmail(email);
+		if(obj == null) {
+			throw new ObjectNotFoundException("Objeto nao encontrado! Id:" +user.getId() + ", Tipo " + Cliente.class.getName());
+		}
+		return obj;
+	}
+	
+	
+	
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage,Direction.valueOf(direction), orderBy);
